@@ -23,7 +23,7 @@ public class Main {
                 new ArrayList<String>(List.of("Michał")),
                 "Konieczny",
                 LocalDate.of(1998, 05, 11),
-                "aaa",
+                "michalk@gmail.com",
                 "aaa",
                 10);
 
@@ -36,6 +36,8 @@ public class Main {
         //Booking.addToExtent(booking);
         //Booking.addToExtent(booking1);
         //Booking.addToExtent(booking2);
+
+        booking1.addClient(client);
 
         WorkerExtent workerExtent = new WorkerExtent();
 

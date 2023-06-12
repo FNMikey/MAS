@@ -168,14 +168,12 @@ public class Booking implements Serializable {
 
     @Override
     public String toString() {
-        return "Booking{" +
-                "id=" + id +
-                ", dateFrom=" + dateFrom +
-                ", dateTo=" + dateTo +
-                ", price=" + price +
-                ", clients=" + clients +
-                ", workerBookings=" + workerBookings +
-                '}';
+        return "Booking: " +
+                "ID= " + id +
+                ", Start date= " + dateFrom +
+                ", End date= " + dateTo +
+                ", Cost= " + price +
+                ", Clients= " + clients;
     }
 
 }

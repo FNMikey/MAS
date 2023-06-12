@@ -9,7 +9,7 @@ public class Client extends Person implements Serializable {
     private String mail;
     private String password;
     private int discount;
-    private Map<Integer, Booking> map = new TreeMap<>();
+    private Map<Integer, Booking> bookings = new TreeMap<>();
 
     public Client(ArrayList<String> names, String surname, LocalDate birthDate, String mail, String password, int discount) {
         super(names, surname, birthDate);
@@ -29,8 +29,8 @@ public class Client extends Person implements Serializable {
         if (Objects.isNull(newBooking)) {
             throw new Exception("Booking can't be a null");
         }
-        if (!map.containsKey(newBooking.getID())) {
-            map.put(newBooking.getID(), newBooking);
+        if (!bookings.containsKey(newBooking.getID())) {
+            bookings.put(newBooking.getID(), newBooking);
 
             System.out.println("Booking added correctly");
 
@@ -45,12 +45,12 @@ public class Client extends Person implements Serializable {
         if (Objects.isNull(booking)) {
             throw new Exception("Booking can't be a null");
         }
-        if (!map.containsKey(booking.getID())){
+        if (!bookings.containsKey(booking.getID())){
 
             throw new Exception("There is no booking assigned to this client");
         }
 
-        map.remove(booking.getID());
+        bookings.remove(booking.getID());
 
         booking.removeClient(this);
 
@@ -79,5 +79,13 @@ public class Client extends Person implements Serializable {
 
     public void setDiscount(int discount) {
         this.discount = discount;
+    }
+
+    @Override
+    public String toString() {
+        return "Client: " +
+                "Name: " + super.getNames() +
+                ", Mail: " + mail +
+                ", Discount:  " + discount;
     }
 }

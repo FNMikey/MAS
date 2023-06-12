@@ -7,8 +7,6 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
 
-enum WorkerType {Worker, Receptionist, Director, Technician}
-
 public class Worker extends Person implements Serializable {
 
     private int ID;
@@ -24,9 +22,6 @@ public class Worker extends Person implements Serializable {
     //asocjacja z atrybutem
     public List<WorkerBooking> workerBookings = new ArrayList<>();
 
-//    {
-//        workerExtent.addWorker(this);
-//    }
 
     public Worker(List<String> names, String surname, LocalDate birthDate, int ID, int salary, String jobType, String jobStatus, LocalDate startDate, int vacationDays, int bonus, Hotel hotel) {
         super(names, surname, birthDate);
