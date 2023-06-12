@@ -1,6 +1,7 @@
 package MP1;
 
 import javax.swing.*;
+import java.awt.print.Book;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -26,9 +27,15 @@ public class Main {
                 "aaa",
                 10);
 
+        Booking bookingExtent = new Booking();
+
         Booking booking = new Booking(1, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 1000);
         Booking booking1 = new Booking(2, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2000);
         Booking booking2 = new Booking(3, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2000);
+
+        //Booking.addToExtent(booking);
+        //Booking.addToExtent(booking1);
+        //Booking.addToExtent(booking2);
 
         WorkerExtent workerExtent = new WorkerExtent();
 
@@ -89,10 +96,13 @@ public class Main {
 
         try {
 
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("extent.txt"));
-            workerExtent.writeExtent(out);
-            Booking.writeExtent(out);
-            out.close();
+            ObjectOutputStream workers = new ObjectOutputStream(new FileOutputStream("workers.txt"));
+            workerExtent.writeExtent(workers);
+            workers.close();
+
+            ObjectOutputStream bookings = new ObjectOutputStream(new FileOutputStream("bookings.txt"));
+            Booking.writeExtent(bookings);
+            bookings.close();
 
 
         } catch (IOException e) {

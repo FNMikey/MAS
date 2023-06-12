@@ -19,6 +19,9 @@ public class Booking implements Serializable {
     public List<WorkerBooking> workerBookings = new ArrayList<>();
     public static List<Booking> BOOKINGS = new ArrayList<>();
 
+    public Booking() {
+
+    }
     public Booking(int ID, LocalDate dateFrom, LocalDate dateTo, int price) throws Exception {
 
         if (!isUnique(ID)) throw new Exception("Booking ID has to be unique");
@@ -131,12 +134,22 @@ public class Booking implements Serializable {
         this.id = ID;
     }
 
+    public static List<Booking> getBOOKINGS() {
+        return BOOKINGS;
+    }
+
     public static void writeExtent(ObjectOutputStream stream) throws IOException {
         stream.writeObject(BOOKINGS);
     }
 
     public static void readExtent(ObjectInputStream stream) throws IOException, ClassNotFoundException {
         BOOKINGS = (ArrayList<Booking>) stream.readObject();
+    }
+
+    public static void addToExtent (Booking booking){
+
+        BOOKINGS.add(booking);
+
     }
 
     public static void showExtent() {
@@ -152,4 +165,17 @@ public class Booking implements Serializable {
         }
 
     }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id=" + id +
+                ", dateFrom=" + dateFrom +
+                ", dateTo=" + dateTo +
+                ", price=" + price +
+                ", clients=" + clients +
+                ", workerBookings=" + workerBookings +
+                '}';
+    }
+
 }
