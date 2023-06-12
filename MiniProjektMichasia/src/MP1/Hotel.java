@@ -26,7 +26,7 @@ public class Hotel implements Serializable {
 
     public Room addRoom(int area, int bedCount, int bathroomCount, int price, String description, String view, boolean isForSmokers, boolean hasKitchen) {
 
-        Room room = new Room(area, bedCount, bathroomCount, price, description, view, isForSmokers, hasKitchen);
+        Room room = new Room(area, bedCount, bathroomCount, price, description, view, isForSmokers, hasKitchen, this);
         rooms.add(room);
 
         return room;
@@ -97,9 +97,10 @@ public class Hotel implements Serializable {
         private String view;
         private boolean isForSmokers;
         private boolean hasKitchen;
+        private Hotel hotel;
 
 
-        public Room(int area, int bedCount, int bathroomCount, int price, String description, String view, boolean isForSmokers, boolean hasKitchen) {
+        public Room(int area, int bedCount, int bathroomCount, int price, String description, String view, boolean isForSmokers, boolean hasKitchen, Hotel hotel) {
             this.area = area;
             this.bedCount = bedCount;
             this.bathroomCount = bathroomCount;
@@ -108,6 +109,7 @@ public class Hotel implements Serializable {
             this.view = view;
             this.isForSmokers = isForSmokers;
             this.hasKitchen = hasKitchen;
+            this.hotel = hotel;
         }
 
         public Hotel getHotel(){
@@ -177,6 +179,7 @@ public class Hotel implements Serializable {
         public void setHasKitchen(boolean hasKitchen) {
             this.hasKitchen = hasKitchen;
         }
+
     }
 
 }

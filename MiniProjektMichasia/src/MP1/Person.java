@@ -18,7 +18,6 @@ public abstract class Person implements Serializable {
         this.names = names;
         this.surname = surname;
         this.birthDate = birthDate;
-
     }
 
     public int getAge() {
