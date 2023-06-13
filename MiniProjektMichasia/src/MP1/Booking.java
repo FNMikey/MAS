@@ -15,21 +15,24 @@ public class Booking implements Serializable {
     private LocalDate dateFrom;
     private LocalDate dateTo;
     private int price;
-    private List<Client> clients = new ArrayList<>();
+    private Client client;
     public List<WorkerBooking> workerBookings = new ArrayList<>();
-    public static List<Booking> BOOKINGS = new ArrayList<>();
+    public static List<Booking> bookings = new ArrayList<>();
+    private Hotel hotel;
 
     public Booking() {
 
     }
-    public Booking(int ID, LocalDate dateFrom, LocalDate dateTo, int price) throws Exception {
+    public Booking(int ID, LocalDate dateFrom, LocalDate dateTo, int price, Hotel hotel) throws Exception {
 
         if (!isUnique(ID)) throw new Exception("Booking ID has to be unique");
         this.id = ID;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
         this.price = price;
-        BOOKINGS.add(this);
+        bookings.add(this);
+        this.hotel = hotel;
+        hotel.addBooking(this);
     }
 
     //asocjacja kwalifikowana
@@ -38,8 +41,8 @@ public class Booking implements Serializable {
             throw new Exception("Client can't be a null");
         }
 
-        if (!clients.contains(newClient)) {
-            clients.add(newClient);
+        if (client != (newClient)) {
+            this.client = (newClient);
 
             System.out.println("Client added correctly");
 
@@ -54,11 +57,11 @@ public class Booking implements Serializable {
             throw new Exception("Client can't be a null");
         }
 
-        if (!clients.contains(client)) {
+        if (this.client == null) {
             throw new Exception("There is no client assigned to this booking");
         }
 
-        clients.remove(client);
+        this.client = null;
         //polaczenie zwrotne
         client.removeBooking(this);
 
@@ -94,7 +97,7 @@ public class Booking implements Serializable {
 
     public boolean isUnique(int ID) {
 
-        for (Booking b : BOOKINGS) {
+        for (Booking b : bookings) {
             if (b.id == ID) {
                 return false;
             }
@@ -134,21 +137,33 @@ public class Booking implements Serializable {
         this.id = ID;
     }
 
-    public static List<Booking> getBOOKINGS() {
-        return BOOKINGS;
+    public Client getClient() {
+        return client;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
+    public static List<Booking> getBookings() {
+        return bookings;
     }
 
     public static void writeExtent(ObjectOutputStream stream) throws IOException {
-        stream.writeObject(BOOKINGS);
+        stream.writeObject(bookings);
     }
 
     public static void readExtent(ObjectInputStream stream) throws IOException, ClassNotFoundException {
-        BOOKINGS = (ArrayList<Booking>) stream.readObject();
+        bookings = (ArrayList<Booking>) stream.readObject();
     }
 
     public static void addToExtent (Booking booking){
 
-        BOOKINGS.add(booking);
+        bookings.add(booking);
 
     }
 
@@ -156,7 +171,7 @@ public class Booking implements Serializable {
 
         System.out.println("Extent of the class: " + Booking.class.getName());
 
-        for (Booking booking : BOOKINGS) {
+        for (Booking booking : bookings) {
             System.out.println(
                     "ID: " + booking.id +
                     ", Price: " + booking.price +
@@ -173,7 +188,8 @@ public class Booking implements Serializable {
                 ", Start date= " + dateFrom +
                 ", End date= " + dateTo +
                 ", Cost= " + price +
-                ", Clients= " + clients;
+                ", Clients= " + client;
+                //", Hotel= " + hotel;
     }
 
 }

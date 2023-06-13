@@ -1,12 +1,11 @@
 package MP1;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 
 public class MyApp extends JFrame{
     private JPanel MainPanel;
@@ -16,22 +15,18 @@ public class MyApp extends JFrame{
     private JPanel TopPanel;
     private JPanel DownPanel;
     private JPanel CenterPanel;
-    private JButton LoginButton;
     private JButton ViewBooking;
-    private JPanel LoginPane;
-    private JTextField textField1;
-    private JPasswordField passwordField1;
     private JPanel BookingsPane;
     private JList bookingList;
     private JPanel DetailsPane;
     private JButton ViewDetailsButton;
     private JButton DeleteButton;
     private JButton SaveButton;
+    private JButton LogoutButton;
 
     private final CardLayout cardLayout = (CardLayout)CenterPanel.getLayout();
 
-
-    public MyApp(){
+    public MyApp(String mail, Booking bookingExtent){
 
         Dimension minSize = new Dimension(1000, 500);
 
@@ -44,37 +39,34 @@ public class MyApp extends JFrame{
         setVisible(true);
         setMinimumSize(minSize);
 
-        Booking bookingExtent = new Booking();
-        try {
-            ObjectInputStream bookings = new ObjectInputStream(new FileInputStream("bookings.txt"));
-            bookingExtent.readExtent(bookings);
-            bookings.close();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
         DefaultListModel<Booking> model = new DefaultListModel<>();
 
-        for (Booking booking : bookingExtent.BOOKINGS) {
+        for (Booking booking : bookingExtent.bookings) {
+
+            if(mail.equals(booking.getClient().getMail())){
+
             model.addElement(booking);
-        }
-
-        bookingList.setModel(model);
-
-        LoginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                cardLayout.show(CenterPanel, "BookingsCard");
 
             }
-        });
+        }
+        bookingList.setModel(model);
 
+        String[] columns = new String[] {"a", "b"};
+        String[][] values = new String[][] {{"A", "B"}, {"C", "D"}};
+
+
+        LogoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new LoginScreen();
+            }
+        });
     }
 
 
     public static void main(String[] args) {
-        new MyApp();
+        new MyApp("A", new Booking());
 
 
     }

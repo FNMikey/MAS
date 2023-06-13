@@ -13,8 +13,10 @@ public class Hotel implements Serializable {
     private int roomsCount;
     private int stars;
     private String description;
+
     private List<Worker> workers = new ArrayList<>();
     private List<Room> rooms = new ArrayList<>();
+    private List<Booking> bookings = new ArrayList<>();
 
     public Hotel(String name, String adres, int roomsCount, int stars, String description) {
         this.name = name;
@@ -42,6 +44,22 @@ public class Hotel implements Serializable {
 
     }
 
+    public void addBooking(Booking newBooking) throws Exception{
+
+        if(Objects.isNull(newBooking)) {
+            throw new Exception("Booking can't be a null");
+        }
+        if (!bookings.contains(newBooking)) {
+            bookings.add(newBooking);
+
+            System.out.println("Worker added correctly");
+
+            //polaczenie zwrotne
+            newBooking.setHotel(this);
+        }
+
+    }
+
     //asocjacja "zwykła"
     public void addWorker(Worker newWorker) throws Exception {
         if(Objects.isNull(newWorker)) {
@@ -62,11 +80,11 @@ public class Hotel implements Serializable {
         if(Objects.isNull(worker)) {
             throw new Exception("Worker can't be a null");
         }
-        if (!workers.contains(worker)) {
+        if (!bookings.contains(worker)) {
             throw new Exception("This worker is not working at this hotel");
         }
 
-        workers.remove(worker);
+        bookings.remove(worker);
         worker.removeHotel(this);
 
         System.out.println("Worker removed successfully");
@@ -83,6 +101,7 @@ public class Hotel implements Serializable {
                 ", description='" + description + '\'' +
                 ", workers=" + workers +
                 ", rooms=" + rooms +
+                ", Bookings=" + bookings +
                 '}';
     }
 
@@ -180,6 +199,19 @@ public class Hotel implements Serializable {
             this.hasKitchen = hasKitchen;
         }
 
+        @Override
+        public String toString() {
+            return "Room{" +
+                    "area=" + area +
+                    ", bedCount=" + bedCount +
+                    ", bathroomCount=" + bathroomCount +
+                    ", price=" + price +
+                    ", description='" + description + '\'' +
+                    ", view='" + view + '\'' +
+                    ", isForSmokers=" + isForSmokers +
+                    ", hasKitchen=" + hasKitchen +
+                    '}';
+        }
     }
 
 }

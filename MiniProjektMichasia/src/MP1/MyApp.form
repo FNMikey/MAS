@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="MP1.MyApp">
   <grid id="27dc6" binding="MainPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
-      <xy x="20" y="20" width="705" height="400"/>
+      <xy x="20" y="20" width="982" height="400"/>
     </constraints>
     <properties/>
     <border type="none"/>
@@ -15,6 +15,7 @@
           <grid id="f10a1" binding="LeftPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints border-constraint="West"/>
             <properties>
+              <background color="-1"/>
               <preferredSize width="130" height="10"/>
             </properties>
             <border type="none"/>
@@ -22,6 +23,8 @@
               <component id="78a5e" class="javax.swing.JButton" binding="ViewBooking">
                 <constraints/>
                 <properties>
+                  <background color="-4487428"/>
+                  <foreground color="-16777216"/>
                   <label value="View bookings"/>
                   <text value="View bookings"/>
                 </properties>
@@ -42,17 +45,39 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="f4dc9" class="javax.swing.JButton" binding="SaveButton">
+              <grid id="12a7c" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
                 <constraints border-constraint="East"/>
                 <properties>
-                  <horizontalAlignment value="0"/>
-                  <label value="Save"/>
-                  <maximumSize width="78" height="10"/>
-                  <minimumSize width="78" height="10"/>
-                  <preferredSize width="80" height="10"/>
-                  <text value="Save"/>
+                  <preferredSize width="300" height="20"/>
                 </properties>
-              </component>
+                <border type="none"/>
+                <children>
+                  <component id="f4dc9" class="javax.swing.JButton" binding="SaveButton">
+                    <constraints/>
+                    <properties>
+                      <horizontalAlignment value="0"/>
+                      <horizontalTextPosition value="0"/>
+                      <label value="Save"/>
+                      <maximumSize width="78" height="10"/>
+                      <minimumSize width="78" height="10"/>
+                      <preferredSize width="70" height="22"/>
+                      <text value="Save"/>
+                    </properties>
+                  </component>
+                  <component id="d7e48" class="javax.swing.JButton" binding="LogoutButton">
+                    <constraints/>
+                    <properties>
+                      <horizontalAlignment value="0"/>
+                      <horizontalTextPosition value="0"/>
+                      <label value="Log out"/>
+                      <maximumSize width="78" height="10"/>
+                      <minimumSize width="78" height="10"/>
+                      <preferredSize width="90" height="22"/>
+                      <text value="Log out"/>
+                    </properties>
+                  </component>
+                </children>
+              </grid>
             </children>
           </grid>
           <grid id="7bbc" binding="DownPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
@@ -68,49 +93,28 @@
             </properties>
             <border type="none"/>
             <children>
-              <grid id="84e68" binding="LoginPane" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
-                <constraints>
-                  <card name="LoginCard"/>
-                </constraints>
-                <properties/>
-                <border type="none"/>
-                <children>
-                  <component id="bb755" class="javax.swing.JTextField" binding="textField1" default-binding="true">
-                    <constraints/>
-                    <properties>
-                      <horizontalAlignment value="11"/>
-                      <minimumSize width="120" height="30"/>
-                      <preferredSize width="120" height="30"/>
-                    </properties>
-                  </component>
-                  <component id="4c009" class="javax.swing.JPasswordField" binding="passwordField1" default-binding="true">
-                    <constraints/>
-                    <properties>
-                      <horizontalAlignment value="11"/>
-                      <minimumSize width="200" height="30"/>
-                      <preferredSize width="200" height="30"/>
-                    </properties>
-                  </component>
-                  <component id="aaa83" class="javax.swing.JButton" binding="LoginButton">
-                    <constraints/>
-                    <properties>
-                      <horizontalTextPosition value="0"/>
-                      <label value="Log in"/>
-                      <text value="Log in"/>
-                    </properties>
-                  </component>
-                </children>
-              </grid>
-              <grid id="9b5c1" binding="BookingsPane" layout-manager="FlowLayout" hgap="100" vgap="10" flow-align="1">
+              <grid id="9b5c1" binding="BookingsPane" layout-manager="FlowLayout" hgap="20" vgap="5" flow-align="1">
                 <constraints>
                   <card name="BookingsCard"/>
                 </constraints>
-                <properties/>
+                <properties>
+                  <background color="-1"/>
+                </properties>
                 <border type="none"/>
                 <children>
+                  <component id="54e44" class="javax.swing.JLabel">
+                    <constraints/>
+                    <properties>
+                      <text value="Your Bookings"/>
+                    </properties>
+                  </component>
                   <component id="4656f" class="javax.swing.JList" binding="bookingList">
                     <constraints/>
-                    <properties/>
+                    <properties>
+                      <background color="-4487428"/>
+                      <fixedCellHeight value="30"/>
+                      <model/>
+                    </properties>
                   </component>
                   <component id="86573" class="javax.swing.JButton" binding="ViewDetailsButton">
                     <constraints/>

@@ -14,34 +14,39 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
 
-        List<String> namesList = new ArrayList<>();
-        namesList.add("Michal");
-        namesList.add("Adam");
-
-
         Client client = new Client(
                 new ArrayList<String>(List.of("Michał")),
                 "Konieczny",
                 LocalDate.of(1998, 05, 11),
-                "michalk@gmail.com",
-                "aaa",
+                "mail",
+                "slabeHaslo",
+                10);
+
+        Client client2 = new Client(
+                new ArrayList<String>(List.of("Michał")),
+                "Konieczny",
+                LocalDate.of(1998, 05, 11),
+                "innyMail",
+                "slabeHaslo",
                 10);
 
         Booking bookingExtent = new Booking();
 
-        Booking booking = new Booking(1, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 1000);
-        Booking booking1 = new Booking(2, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2000);
-        Booking booking2 = new Booking(3, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2000);
+        Hotel hotel = new Hotel("LAS", "Koszykowa 82", 123, 5, "bardzo fajny hotel");
+
+        Booking booking = new Booking(1, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 1000, hotel);
+        Booking booking1 = new Booking(2, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2000, hotel);
+        Booking booking2 = new Booking(3, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2000, hotel);
 
         //Booking.addToExtent(booking);
         //Booking.addToExtent(booking1);
         //Booking.addToExtent(booking2);
 
+        booking.addClient(client);
         booking1.addClient(client);
+        booking2.addClient(client2);
 
         WorkerExtent workerExtent = new WorkerExtent();
-
-        Hotel hotel = new Hotel("LAS", "Koszykowa 82", 123, 5, "bardzo fajny hotel");
 
         Hotel.Room room = hotel.addRoom(1, 2, 3, 4, "over sea", "b", true, false);
 
@@ -118,6 +123,7 @@ public class Main {
         System.out.println("----------------------------------------------");
 
         Booking.showExtent();
+
 
     }
 
