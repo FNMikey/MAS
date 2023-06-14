@@ -1,8 +1,6 @@
 package MP1;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,8 +21,11 @@ public class MyApp extends JFrame{
     private JButton DeleteButton;
     private JButton SaveButton;
     private JButton LogoutButton;
+    private JTextField bookingPrice;
 
     private final CardLayout cardLayout = (CardLayout)CenterPanel.getLayout();
+
+    private Booking selectedItem = new Booking();
 
     public MyApp(String mail, Booking bookingExtent){
 
@@ -34,7 +35,7 @@ public class MyApp extends JFrame{
 
         setTitle("App");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1000, 500);
+        setSize(700, 500);
         setResizable(true);
         setVisible(true);
         setMinimumSize(minSize);
@@ -51,10 +52,6 @@ public class MyApp extends JFrame{
         }
         bookingList.setModel(model);
 
-        String[] columns = new String[] {"a", "b"};
-        String[][] values = new String[][] {{"A", "B"}, {"C", "D"}};
-
-
         LogoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -62,11 +59,34 @@ public class MyApp extends JFrame{
                 new LoginScreen();
             }
         });
+        ViewDetailsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               selectedItem =  model.get(bookingList.getSelectedIndex());
+
+
+               bookingPrice.setText(Integer.toString(selectedItem.getPrice()));
+
+               cardLayout.show(CenterPanel, "DetailsCard");
+
+            }
+        });
+        ViewBooking.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(CenterPanel, "BookingsCard");
+
+                selectedItem.setPrice(Integer.parseInt(bookingPrice.getText()));
+
+                bookingList.setModel(model);
+            }
+        });
     }
 
 
-    public static void main(String[] args) {
-        new MyApp("A", new Booking());
+    public static void main(String[] args){
+
+        new MyApp("a", new Booking());
 
 
     }

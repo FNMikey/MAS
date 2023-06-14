@@ -52,7 +52,7 @@ public class Hotel implements Serializable {
         if (!bookings.contains(newBooking)) {
             bookings.add(newBooking);
 
-            System.out.println("Worker added correctly");
+            System.out.println("Booking added correctly");
 
             //polaczenie zwrotne
             newBooking.setHotel(this);
@@ -91,6 +91,10 @@ public class Hotel implements Serializable {
 
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "Hotel{" +
@@ -101,13 +105,13 @@ public class Hotel implements Serializable {
                 ", description='" + description + '\'' +
                 ", workers=" + workers +
                 ", rooms=" + rooms +
-                ", Bookings=" + bookings +
                 '}';
     }
 
     //kompozycja
     public class Room implements Serializable{
 
+        private int ID;
         private int area;
         private int bedCount;
         private int bathroomCount;
@@ -119,7 +123,9 @@ public class Hotel implements Serializable {
         private Hotel hotel;
 
 
-        public Room(int area, int bedCount, int bathroomCount, int price, String description, String view, boolean isForSmokers, boolean hasKitchen, Hotel hotel) {
+        public Room(int ID, int area, int bedCount, int bathroomCount, int price, String description, String view, boolean isForSmokers, boolean hasKitchen, Hotel hotel) {
+
+            this.ID=ID;
             this.area = area;
             this.bedCount = bedCount;
             this.bathroomCount = bathroomCount;
@@ -211,6 +217,34 @@ public class Hotel implements Serializable {
                     ", isForSmokers=" + isForSmokers +
                     ", hasKitchen=" + hasKitchen +
                     '}';
+        }
+
+
+        public class Pictures implements Serializable{
+
+            String name;
+            String size;
+
+            public Pictures(String name, String size) {
+                this.name = name;
+                this.size = size;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public String getSize() {
+                return size;
+            }
+
+            public void setSize(String size) {
+                this.size = size;
+            }
         }
     }
 

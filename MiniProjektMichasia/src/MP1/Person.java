@@ -55,7 +55,7 @@ public abstract class Person implements Serializable {
                 "name='" + names + '\'' +
                 ", surname='" + surname + '\'' +
                 ", birthDate=" + birthDate +
-                ", age=" + Period.between(birthDate, LocalDate.now()).getYears() +
+                ", age=" + this.getAge() +
                 '}';
     }
 

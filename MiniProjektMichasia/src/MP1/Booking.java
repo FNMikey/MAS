@@ -20,10 +20,12 @@ public class Booking implements Serializable {
     public static List<Booking> bookings = new ArrayList<>();
     private Hotel hotel;
 
+    private String status;
+
     public Booking() {
 
     }
-    public Booking(int ID, LocalDate dateFrom, LocalDate dateTo, int price, Hotel hotel) throws Exception {
+    public Booking(int ID, LocalDate dateFrom, LocalDate dateTo, int price, Hotel hotel, String status) throws Exception {
 
         if (!isUnique(ID)) throw new Exception("Booking ID has to be unique");
         this.id = ID;
@@ -33,6 +35,7 @@ public class Booking implements Serializable {
         bookings.add(this);
         this.hotel = hotel;
         hotel.addBooking(this);
+        this.status = status;
     }
 
     //asocjacja kwalifikowana
@@ -153,6 +156,14 @@ public class Booking implements Serializable {
         return bookings;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public static void writeExtent(ObjectOutputStream stream) throws IOException {
         stream.writeObject(bookings);
     }
@@ -184,12 +195,10 @@ public class Booking implements Serializable {
     @Override
     public String toString() {
         return "Booking: " +
-                "ID= " + id +
-                ", Start date= " + dateFrom +
+                "Start date= " + dateFrom +
                 ", End date= " + dateTo +
                 ", Cost= " + price +
-                ", Clients= " + client;
-                //", Hotel= " + hotel;
+                ", Hotel= " + hotel.getName();
     }
 
 }
