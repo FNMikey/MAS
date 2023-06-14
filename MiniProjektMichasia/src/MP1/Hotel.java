@@ -26,9 +26,9 @@ public class Hotel implements Serializable {
         this.description = description;
     }
 
-    public Room addRoom(int area, int bedCount, int bathroomCount, int price, String description, String view, boolean isForSmokers, boolean hasKitchen) {
+    public Room addRoom(int ID, int area, int bedCount, int bathroomCount, int price, String description, String view, boolean isForSmokers, boolean hasKitchen) {
 
-        Room room = new Room(area, bedCount, bathroomCount, price, description, view, isForSmokers, hasKitchen, this);
+        Room room = new Room(ID, area, bedCount, bathroomCount, price, description, view, isForSmokers, hasKitchen, this);
         rooms.add(room);
 
         return room;
