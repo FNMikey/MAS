@@ -19,7 +19,7 @@ public class Main {
                 "Konieczny",
                 LocalDate.of(1998, 05, 11),
                 "mail",
-                "slabeHaslo",
+                "haslo",
                 10);
 
         Client client2 = new Client(
@@ -27,20 +27,14 @@ public class Main {
                 "Konieczny",
                 LocalDate.of(1998, 05, 11),
                 "innyMail",
-                "slabeHaslo",
+                "haslo",
                 10);
-
-        Booking bookingExtent = new Booking();
 
         Hotel hotel = new Hotel("LAS", "Koszykowa 82", 123, 5, "bardzo fajny hotel");
 
-        Booking booking = new Booking(1, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 1000, hotel);
-        Booking booking1 = new Booking(2, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2000, hotel);
-        Booking booking2 = new Booking(3, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2000, hotel);
-
-        //Booking.addToExtent(booking);
-        //Booking.addToExtent(booking1);
-        //Booking.addToExtent(booking2);
+        Booking booking = new Booking(1, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 1000, hotel, "w trakcie");
+        Booking booking1 = new Booking(2, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2000, hotel, "w trakcie");
+        Booking booking2 = new Booking(3, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2000, hotel, "w trakcie");
 
         booking.addClient(client);
         booking1.addClient(client);
@@ -48,7 +42,7 @@ public class Main {
 
         WorkerExtent workerExtent = new WorkerExtent();
 
-        Hotel.Room room = hotel.addRoom(1, 2, 3, 4, "over sea", "b", true, false);
+        Hotel.Room room = hotel.addRoom(1, 2, 3, 4,1000, "over sea", "b", true, false);
 
         room.toString();
 

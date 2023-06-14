@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 public class MyApp extends JFrame{
     private JPanel MainPanel;
@@ -15,17 +19,17 @@ public class MyApp extends JFrame{
     private JPanel CenterPanel;
     private JButton ViewBooking;
     private JPanel BookingsPane;
-    private JList bookingList;
+    private JList bookingJList;
     private JPanel DetailsPane;
     private JButton ViewDetailsButton;
     private JButton DeleteButton;
     private JButton SaveButton;
     private JButton LogoutButton;
-    private JTextField bookingPrice;
-
+    private JTextField bookingStatus;
     private final CardLayout cardLayout = (CardLayout)CenterPanel.getLayout();
-
     private Booking selectedItem = new Booking();
+
+    private ArrayList<Booking> bookingArrayList= new ArrayList();
 
     public MyApp(String mail, Booking bookingExtent){
 
@@ -50,7 +54,7 @@ public class MyApp extends JFrame{
 
             }
         }
-        bookingList.setModel(model);
+        bookingJList.setModel(model);
 
         LogoutButton.addActionListener(new ActionListener() {
             @Override
@@ -62,10 +66,10 @@ public class MyApp extends JFrame{
         ViewDetailsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               selectedItem =  model.get(bookingList.getSelectedIndex());
+               selectedItem =  model.get(bookingJList.getSelectedIndex());
 
 
-               bookingPrice.setText(Integer.toString(selectedItem.getPrice()));
+               bookingStatus.setText(selectedItem.getStatus());
 
                cardLayout.show(CenterPanel, "DetailsCard");
 
@@ -76,9 +80,33 @@ public class MyApp extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(CenterPanel, "BookingsCard");
 
-                selectedItem.setPrice(Integer.parseInt(bookingPrice.getText()));
+                selectedItem.setStatus(bookingStatus.getText());
 
-                bookingList.setModel(model);
+                bookingJList.setModel(model);
+
+            }
+        });
+        SaveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                for (int i = 0; i < bookingJList.getModel().getSize(); i++) {
+
+                    bookingArrayList.add((Booking)bookingJList.getModel().getElementAt(i));
+
+                }
+
+                try {
+
+                    ObjectOutputStream bookings = new ObjectOutputStream(new FileOutputStream("bookings.txt"));
+                    Booking.writeExtent(bookings);
+                    bookings.close();
+
+
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                }
+
             }
         });
     }

@@ -198,7 +198,8 @@ public class Booking implements Serializable {
                 "Start date= " + dateFrom +
                 ", End date= " + dateTo +
                 ", Cost= " + price +
-                ", Hotel= " + hotel.getName();
+                ", Hotel= " + hotel.getName() +
+                ", Status= " + status;
     }
 
 }
