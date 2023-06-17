@@ -108,6 +108,8 @@ public class Hotel implements Serializable {
                 '}';
     }
 
+
+
     //kompozycja
     public class Room implements Serializable{
 

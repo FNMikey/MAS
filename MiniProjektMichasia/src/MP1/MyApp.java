@@ -25,13 +25,22 @@ public class MyApp extends JFrame{
     private JButton DeleteButton;
     private JButton SaveButton;
     private JButton LogoutButton;
-    private JTextField bookingStatus;
+    private JLabel yourBookingLabel;
+    private JPanel TopRightPanel;
+    private JLabel spacer;
+    private JLabel youBookingsLabel;
+    private JLabel bookingStatus;
+    private JLabel bookingDateFrom;
+    private JLabel bookingDateTo;
+    private JLabel bookingPrice;
     private final CardLayout cardLayout = (CardLayout)CenterPanel.getLayout();
     private Booking selectedItem = new Booking();
 
     private ArrayList<Booking> bookingArrayList= new ArrayList();
 
     public MyApp(String mail, Booking bookingExtent){
+
+
 
         Dimension minSize = new Dimension(1000, 500);
 
@@ -69,7 +78,12 @@ public class MyApp extends JFrame{
                selectedItem =  model.get(bookingJList.getSelectedIndex());
 
 
-               bookingStatus.setText(selectedItem.getStatus());
+               bookingDateFrom.setText("Date from: " + selectedItem.getDateFrom().toString());
+               bookingDateTo.setText("Date to: " + selectedItem.getDateTo().toString());
+               bookingPrice.setText("Price : " + selectedItem.getPrice());
+               bookingStatus.setText("Status: " + selectedItem.getStatus());
+
+               yourBookingLabel.setText("Your booking at the Hotel: " + selectedItem.getHotel().getName() + " status: ");
 
                cardLayout.show(CenterPanel, "DetailsCard");
 
@@ -83,6 +97,7 @@ public class MyApp extends JFrame{
                 selectedItem.setStatus(bookingStatus.getText());
 
                 bookingJList.setModel(model);
+
 
             }
         });
@@ -106,6 +121,8 @@ public class MyApp extends JFrame{
                 } catch (IOException exception) {
                     exception.printStackTrace();
                 }
+
+                JOptionPane.showMessageDialog(new JFrame(), "Changes succesfully saved", "Saved", JOptionPane.INFORMATION_MESSAGE);
 
             }
         });

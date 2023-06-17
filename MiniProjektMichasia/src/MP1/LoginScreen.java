@@ -16,6 +16,8 @@ public class LoginScreen extends  JFrame{
     private JTextField mailField;
     private JPasswordField passwordField;
     private JButton loginButton;
+    private JLabel mailLabel;
+    private JLabel passwordLabel;
 
     private HashMap<String, String> accounts = new HashMap<>();
 
@@ -23,7 +25,7 @@ public class LoginScreen extends  JFrame{
 
         setContentPane(RootPanel);
 
-        setTitle("Login Screen");
+        setTitle("Login");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(500, 200);
         setResizable(false);
@@ -57,7 +59,7 @@ public class LoginScreen extends  JFrame{
 
                 }else {
 
-                    JOptionPane.showMessageDialog(new JFrame(), "Wrong mail or password");
+                    JOptionPane.showMessageDialog(new JFrame(), "Wrong mail or password", "Error", JOptionPane.ERROR_MESSAGE);
 
 
                 }
