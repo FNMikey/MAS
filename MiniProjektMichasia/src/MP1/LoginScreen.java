@@ -28,6 +28,7 @@ public class LoginScreen extends  JFrame{
         setTitle("Login");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(500, 200);
+        setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
 

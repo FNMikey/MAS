@@ -194,8 +194,7 @@ public class Booking implements Serializable {
 
     @Override
     public String toString() {
-        return "Booking: " +
-                "Start date= " + dateFrom +
+        return  "Start date= " + dateFrom +
                 ", End date= " + dateTo +
                 ", Cost= " + price +
                 ", Hotel= " + hotel.getName() +

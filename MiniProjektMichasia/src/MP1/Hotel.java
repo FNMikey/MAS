@@ -94,6 +94,9 @@ public class Hotel implements Serializable {
     public String getName() {
         return name;
     }
+    public String getDescription() {return description;}
+
+    public String getAdres() {return adres;}
 
     @Override
     public String toString() {

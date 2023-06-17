@@ -33,6 +33,9 @@ public class MyApp extends JFrame{
     private JLabel bookingDateFrom;
     private JLabel bookingDateTo;
     private JLabel bookingPrice;
+    private JLabel hotelDesc;
+    private JLabel hotelAdres;
+    private JButton payButton;
     private final CardLayout cardLayout = (CardLayout)CenterPanel.getLayout();
     private Booking selectedItem = new Booking();
 
@@ -50,6 +53,7 @@ public class MyApp extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(700, 500);
         setResizable(true);
+        setLocationRelativeTo(null);
         setVisible(true);
         setMinimumSize(minSize);
 
@@ -77,13 +81,21 @@ public class MyApp extends JFrame{
             public void actionPerformed(ActionEvent e) {
                selectedItem =  model.get(bookingJList.getSelectedIndex());
 
+               if(!selectedItem.getStatus().equals("In progress")){
+                   payButton.setVisible(false);
+               }else{
+                   payButton.setVisible(true);
+               }
+
 
                bookingDateFrom.setText("Date from: " + selectedItem.getDateFrom().toString());
                bookingDateTo.setText("Date to: " + selectedItem.getDateTo().toString());
                bookingPrice.setText("Price : " + selectedItem.getPrice());
+               hotelAdres.setText(("Hotel adress: "  + selectedItem.getHotel().getAdres()));
+               hotelDesc.setText(("Hotel description: "  + selectedItem.getHotel().getDescription()));
                bookingStatus.setText("Status: " + selectedItem.getStatus());
 
-               yourBookingLabel.setText("Your booking at the Hotel: " + selectedItem.getHotel().getName() + " status: ");
+               yourBookingLabel.setText("Your booking at the Hotel: " + selectedItem.getHotel().getName());
 
                cardLayout.show(CenterPanel, "DetailsCard");
 
@@ -94,9 +106,7 @@ public class MyApp extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(CenterPanel, "BookingsCard");
 
-                selectedItem.setStatus(bookingStatus.getText());
-
-                bookingJList.setModel(model);
+                //bookingJList.setModel(model);
 
 
             }
@@ -123,6 +133,15 @@ public class MyApp extends JFrame{
                 }
 
                 JOptionPane.showMessageDialog(new JFrame(), "Changes succesfully saved", "Saved", JOptionPane.INFORMATION_MESSAGE);
+
+            }
+        });
+        payButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                selectedItem.setStatus("Done");
+
+                ViewDetailsButton.doClick();
 
             }
         });

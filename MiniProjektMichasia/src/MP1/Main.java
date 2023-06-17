@@ -30,22 +30,26 @@ public class Main {
                 "haslo",
                 10);
 
-        Hotel hotel = new Hotel("LAS", "Koszykowa 82", 123, 5, "bardzo fajny hotel");
+        Hotel hotel = new Hotel("Marmur", "Warszawa - Koszykowa 82", 123, 5, "bardzo fajny hotel");
+        Hotel hotel1 = new Hotel("Mauris", "Kraków - Koszykowa 1", 123, 5, "bardzo fajny hotel");
+        Hotel hotel2 = new Hotel("Szafir", "Poznań - Koszykowa 23", 123, 5, "bardzo fajny hotel");
+        Hotel hotel3 = new Hotel("LAS", "Wrocław - Koszykowa 12", 123, 5, "bardzo fajny hotel");
+        Hotel hotel4 = new Hotel("Palma", "Gdańsk - Koszykowa 31", 123, 5, "bardzo fajny hotel");
 
-        Booking booking = new Booking(1, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 1000, hotel, "w trakcie");
-        Booking booking1 = new Booking(2, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 3000, hotel, "w trakcie");
-        Booking booking2 = new Booking(3, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 500, hotel, "w trakcie");
-        Booking booking3 = new Booking(4, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 1000, hotel, "w trakcie");
-        Booking booking4 = new Booking(5, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2345, hotel, "w trakcie");
-        Booking booking5 = new Booking(6, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 1908, hotel, "w trakcie");
-        Booking booking6 = new Booking(7, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 1999, hotel, "w trakcie");
-        Booking booking7 = new Booking(8, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 6000, hotel, "w trakcie");
-        Booking booking8 = new Booking(9, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 7500, hotel, "w trakcie");
-        Booking booking9 = new Booking(10, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 800, hotel, "w trakcie");
-        Booking booking10 = new Booking(11, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2000, hotel, "w trakcie");
-        Booking booking11 = new Booking(12, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2000, hotel, "w trakcie");
-        Booking booking12 = new Booking(13, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2000, hotel, "w trakcie");
-        Booking booking13 = new Booking(14, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2000, hotel, "w trakcie");
+        Booking booking = new Booking(1, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 1000, hotel, "In progress");
+        Booking booking1 = new Booking(2, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 3000, hotel2, "In progress");
+        Booking booking2 = new Booking(3, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 500, hotel3, "In progress");
+        Booking booking3 = new Booking(4, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 1000, hotel1, "In progress");
+        Booking booking4 = new Booking(5, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2345, hotel3, "In progress");
+        Booking booking5 = new Booking(6, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 1908, hotel4, "In progress");
+        Booking booking6 = new Booking(7, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 1999, hotel1, "In progress");
+        Booking booking7 = new Booking(8, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 6000, hotel, "In progress");
+        Booking booking8 = new Booking(9, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 7500, hotel, "In progress");
+        Booking booking9 = new Booking(10, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 800, hotel1, "In progress");
+        Booking booking10 = new Booking(11, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2000, hotel2, "In progress");
+        Booking booking11 = new Booking(12, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2000, hotel, "In progress");
+        Booking booking12 = new Booking(13, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2000, hotel4, "In progress");
+        Booking booking13 = new Booking(14, LocalDate.of(1998, 05, 11), LocalDate.of(1998, 05, 11), 2000, hotel, "In progress");
 
         booking.addClient(client);
         booking1.addClient(client);
