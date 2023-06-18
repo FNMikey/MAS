@@ -22,7 +22,6 @@ public class MyApp extends JFrame{
     private JList bookingJList;
     private JPanel DetailsPane;
     private JButton ViewDetailsButton;
-    private JButton DeleteButton;
     private JButton SaveButton;
     private JButton LogoutButton;
     private JLabel yourBookingLabel;
@@ -106,25 +105,16 @@ public class MyApp extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(CenterPanel, "BookingsCard");
 
-                //bookingJList.setModel(model);
-
-
             }
         });
         SaveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                for (int i = 0; i < bookingJList.getModel().getSize(); i++) {
-
-                    bookingArrayList.add((Booking)bookingJList.getModel().getElementAt(i));
-
-                }
-
                 try {
 
                     ObjectOutputStream bookings = new ObjectOutputStream(new FileOutputStream("bookings.txt"));
-                    Booking.writeExtent(bookings);
+                    bookingExtent.writeExtent(bookings);
                     bookings.close();
 
 

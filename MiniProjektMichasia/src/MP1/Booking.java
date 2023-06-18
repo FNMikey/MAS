@@ -172,6 +172,12 @@ public class Booking implements Serializable {
         bookings = (ArrayList<Booking>) stream.readObject();
     }
 
+    public static void remove(Booking booking){
+
+        bookings.remove(booking);
+
+    }
+
     public static void addToExtent (Booking booking){
 
         bookings.add(booking);
